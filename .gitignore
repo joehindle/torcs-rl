@@ -2,6 +2,9 @@
 __pycache__/
 *.pyc
 models/
+!models/.gitkeep
+!models/checkpoints/
+!models/checkpoints/.gitkeep
 results/
 *.pkl
 *.zip
