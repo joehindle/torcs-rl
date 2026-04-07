@@ -1,7 +1,7 @@
 .venv/
 __pycache__/
 *.pyc
-models/
+models/*
 !models/.gitkeep
 !models/checkpoints/
 !models/checkpoints/.gitkeep
