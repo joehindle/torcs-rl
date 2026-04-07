@@ -14,7 +14,7 @@ class TorcsEnv(gym.Env):
     """
     Analyse-style TORCS environment adapted to this project.
     """
-
+#edit
     metadata = {"render_modes": []}
 
     def __init__(self, gui=False, infinite=False, port=3001, max_steps=4000):
@@ -119,16 +119,16 @@ class TorcsEnv(gym.Env):
         pedal_change = abs(float(pedal) - float(prev_pedal))
 
         reward = 0.0
-        reward += 1.8 * forward
-        reward -= 0.35 * abs(speed_y)
-        reward -= 0.30 * abs(angle_n)
-        reward -= 0.42 * (center_pen ** 2)
+        reward += 0.2 * forward
+        reward -= 0.80 * abs(speed_y)
+        reward -= 0.80 * abs(angle_n)
+        reward -= 0.75 * (center_pen ** 2)
         reward -= 0.06 * abs(float(steer))
         reward -= 0.16 * steer_change
-        reward -= 0.05 * pedal_change
+        reward -= 0.06 * pedal_change
         # Extra penalty for large steering at higher speed (helps reduce spins).
-        reward -= 0.06 * max(0.0, speed_x) * abs(float(steer))
-        reward -= 0.09 * max(0.0, speed_x) * steer_change
+        reward -= 0.10 * max(0.0, speed_x) * abs(float(steer))
+        reward -= 0.14 * max(0.0, speed_x) * steer_change
 
         # Small bonus for stable, centered alignment.
         if center_err < 0.10 and abs(angle_n) < 0.08:
@@ -251,7 +251,7 @@ class TorcsEnv(gym.Env):
         prev_dist = float(obs_pre.get("distRaced", 0.0))
         curr_dist = float(obs.get("distRaced", 0.0))
         progress = float(np.clip(curr_dist - prev_dist, -1.0, 1.0))
-        reward += 0.45 * progress
+        reward += 0.60 * progress
         # Small anti-hunt penalty for each shift event.
         if int(self.current_gear) != prev_gear_cmd:
             reward -= 0.01

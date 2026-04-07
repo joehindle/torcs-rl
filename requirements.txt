@@ -1,0 +1,7 @@
+stable-baselines3==2.8.0
+gymnasium==1.2.3
+numpy==2.4.4
+matplotlib==3.10.8
+torch==2.11.0
+pandas==3.0.2
+cloudpickle==3.1.2
